@@ -1,0 +1,6 @@
+body{
+    background-color: linear-gradient(to right, red, blue, purple);
+    color: white;
+    text-align: center;
+    font-family: cursive;
+}
