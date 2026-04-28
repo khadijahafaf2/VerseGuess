@@ -3,7 +3,20 @@
     <head>
         <title>VerseGuess</title>
     <link rel="stylesheet" href="style.css">
-        input 
        </style> 
     </head>
+    <body onload="loadQuestion()">
+        <h1> Guess the Lyrics</h1>
+        <p id="lyric"></p>
+        <input type="text" id="answer" placeholder="Type answer">
+        <br><br>
+        <button onclick="checkAnswer()">Submit</button>
+        <button onclick="nextQuestion()">Next</button>
+        <p id="result"></p>
+        <script>
+            let questions = [
+              
+            ];
+        </script>
+
 </html>

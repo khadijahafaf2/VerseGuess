@@ -1,6 +1,18 @@
+
 body{
-    background-color: linear-gradient(to right, red, blue, purple);
-    color: white;
+    background: #ecb2ff;
+    color:black
     text-align: center;
-    font-family: cursive;
+    font-family: New Times Roman, serif;
+}
+input{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+}
+button{
+    padding:10px;
+    margin:5px;
+    border-radius: 10px;
+    border:none;
 }
