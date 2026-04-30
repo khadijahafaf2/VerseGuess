@@ -7,7 +7,8 @@
     </head>
     <body onload="loadQuestion()">
         <h1> Guess the Lyrics</h1>
-        <img src="flowerdisk.jpg" alt="flower" class="cover">
+        <img src="pdisk.png" alt="flower" class="cover" style="position: fixed; top: 10px; left: 10px; width:200px; height:200px; z-index: 10;">
+        <img id="hint" src="" alt="hint" class="hint-image">
         <p id="lyric"></p>
         <input type="text" id="answer" placeholder="Type answer">
         <br><br>
@@ -18,27 +19,41 @@
             let questions = [
             {
                 lyric: "Then you're left in the _____",
-                answer: "dust"
+                answer: "dust",
+                img: "img1.jpg"
             },
             {
-                lyric: "and you are ______",
-                answer: "unforgettable"
+                lyric: "If you wanna run away with me, I know a _____",
+                answer: "galaxy",
+                img: "img2.jpg"
             },
             {
-                lyric:"Got two girls in the ______",
-                answer: "cut"
+                lyric:"You know you love me, I know you ____",
+                answer: "care",
+                img: "img3.jpg"
+            },
+            {
+                lyric:"party at the _____ down in copacabana",
+                answer: "beach",
+                img: "img4.jpg"
+            },
+            {
+                lyric:"Now I've found another crush,lush life giving me _____",
+                answer: "rush",
+                img: "img5.jpg"
             }
             ];
             let current = 0;
             function loadQuestion(){
                 document.getElementById("lyric").innerHTML = questions[current].lyric;
+                document.getElementById("hint").src = questions[current].img;
             }
             function checkAnswer(){
                 let userAnswer = document.getElementById("answer").value.toLowerCase().trim();
                 if(userAnswer === questions[current].answer){
                     document.getElementById("result").innerHTML = "Correct! ✅";
                 } else {
-                    document.getElementById("result").innerHTML = "Wrong! ❌ Try again.";
+                    document.getElementById("result").innerHTML = "Wrong! ❌ The correct answer is: <strong>" + questions[current].answer + "</strong>";
                 }
             }
             function nextQuestion(){
