@@ -1,6 +1,6 @@
 
 body{
-    background: #ecb2ff;
+    background: #f6daff;
     color: black;
     text-align: center;
     font-family: New Times Roman, serif;
@@ -31,11 +31,27 @@ button:hover{
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     cursor: pointer;
 }
+.hidden{
+    display: none;
+}
+.start-img{
+    max-width: 90%;
+    width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
 .hint-image{
     max-width: 200px;
     height: auto;
     margin: 20px 0;
     border-radius: 10px;
+}
+#thankyou{
+    font-size: 1.2em;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
 }
 #score, #timer{
     font-size: 1.2em;

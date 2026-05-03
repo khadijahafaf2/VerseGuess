@@ -5,24 +5,31 @@
     <link rel="stylesheet" href="style.css">
 
     </head>
-    <body onload="loadQuestion()">
+    <body>
         <h1> Guess the Lyrics</h1>
         <img src="pdisk.png" alt="flower" class="cover" style="position: fixed; top: 10px; left: 10px; width:200px; height:200px; z-index: 10;">
         <img src="hibiscus-removebg-preview (1).png" alt="hibiscus" class="hibiscus" style="position: fixed; top: 220px; left: 10px; width: 120px; height: 120px; z-index: 10;">
-        <img id="hint" src="" alt="hint" class="hint-image">
-        <p id="lyric"></p>
-        <input type="text" id="answer" placeholder="Type answer">
-        <br><br>
-        <p id="score">Score: 0</p>
-        <p id="timer">Timer: 20</p>
-        <button onclick="checkAnswer()">Submit</button>
-        <button onclick="nextQuestion()">Next</button>
-        <p id="result"></p>
+        <div id="start-screen">
+            <img src="speedstart.jpg" alt="start image" class="start-img">
+            <br><br>
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        <div id="quiz-screen" class="hidden">
+            <img id="hint" src="" alt="hint" class="hint-image">
+            <p id="thankyou" class="hidden"></p>
+            <p id="lyric"></p>
+            <input type="text" id="answer" placeholder="Type answer">
+            <br><br>
+            <p id="score">Score: 0</p>
+            <button onclick="checkAnswer()">Submit</button>
+            <button onclick="nextQuestion()">Next</button>
+            <p id="result"></p>
+        </div>
         <script>
             let questions = [
             {
-                lyric: "Then you're left in the _____",
-                answer: "dust",
+                lyric: "Then you're left in the dust unless I stuck by ya, you're a ____",
+                answer: "sunflower",
                 img: "img1.jpg"
             },
             {
@@ -49,56 +56,53 @@
                 lyric:"Secret _____ have held in my heart are harder to hide than I thought",
                 answer: "thoughts",
                 img: "img6.jpg"
+            },
+            {
+                lyric:"Kaboom Kapow, rest in peace my granny, she got hit by a _____",
+                answer: "bazooka",
+                img: "img10.jpg"
             }
             {
                 lyric:"I just wanna be part of your_____",
                 answer: "symphony",
                 img: "img7.jpg"
-            }
+            },
             {
                 lyric:"A _____ came around my room before you came",
                 answer: "tornado",
                 img: "img8.jpg"
-            }
+            },
             {
                 lyric:"She said, 'Do you love me?' I tell her, 'Only partly, I only love my bed and my _____'",
                 answer: "momma",
                 img: "img9.jpg"
             }
-            ]
+            ];
             let current = 0;
             let score = 0;
-            let timeLeft = 20;
             let timerInterval;
 
             function loadQuestion(){
                 document.getElementById("lyric").innerHTML = '"' + questions[current].lyric + '"';
                 document.getElementById("hint").src = questions[current].img;
-                startTimer();
             }
 
-            function startTimer(){
-                timeLeft = 20;
-                document.getElementById("timer").innerHTML = "Timer: " + timeLeft;
-                timerInterval = setInterval(function(){
-                    timeLeft--;
-                    document.getElementById("timer").innerHTML = "Timer: " + timeLeft;
-                    if(timeLeft <= 0){
-                        clearInterval(timerInterval);
-                        nextQuestion();
-                    }
-                }, 1000);
+            function startGame(){
+                document.getElementById("start-screen").style.display = "none";
+                document.getElementById("quiz-screen").style.display = "block";
+                loadQuestion();
             }
 
             function checkAnswer(){
-                clearInterval(timerInterval);
                 let userAnswer = document.getElementById("answer").value.toLowerCase().trim();
                 if(userAnswer === questions[current].answer){
                     score++;
                     document.getElementById("score").innerHTML = "Score: " + score;
-                    document.getElementById("result").innerHTML = "Correct! ✅";
+                    document.getElementById("result").innerHTML = "Ayyyy U got it!!! ✅";
+                    document.getElementById("hint").src = "speedright.jpg";
                 } else {
-                    document.getElementById("result").innerHTML = "Wrong! ❌ The correct answer is: <strong>" + questions[current].answer + "</strong>";
+                    document.getElementById("result").innerHTML = "nahh twin try again! ❌ The correct answer is: <strong>" + questions[current].answer + "</strong>";
+                    document.getElementById("hint").src = "speedwrong.jpg";
                 }
                 setTimeout(nextQuestion, 2000); // Auto-advance after 2 seconds
             }
@@ -111,12 +115,14 @@
                     document.getElementById("answer").value = "";
                     document.getElementById("result").innerHTML = "";
                 } else {
-                    document.getElementById("lyric").innerHTML = "🎉 You finished! Final Score: " + score;
+                    document.getElementById("lyric").innerHTML = "Final Score: " + score;
                     document.getElementById("answer").value = "";
                     document.getElementById("result").innerHTML = "";
-                    document.getElementById("timer").innerHTML = "Timer: 0";
+                    document.getElementById("hint").src = "ending.jpg";
+                    document.getElementById("thankyou").innerHTML = "Thank You for playing my game!";
+                    document.getElementById("thankyou").classList.remove("hidden");
                 }
             }
         </script>
 </body>
-</html>
+</html> 
