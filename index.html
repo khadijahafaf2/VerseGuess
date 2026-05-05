@@ -14,21 +14,33 @@
             <br><br>
             <button onclick="startGame()">Start Game</button>
         </div>
-        <div id="quiz-screen" class="hidden">
+
+          <div id="quiz-screen" class="hidden" style="display: none;">
+             
             <img id="hint" src="" alt="hint" class="hint-image">
-            <p id="thankyou" class="hidden"></p>
             <p id="lyric"></p>
+           
             <input type="text" id="answer" placeholder="Type answer">
             <br><br>
             <p id="score">Score: 0</p>
+
             <button onclick="checkAnswer()">Submit</button>
             <button onclick="nextQuestion()">Next</button>
             <p id="result"></p>
         </div>
+        <div id="end-screen" style="display: none;">
+            <h1>Thank you for playing!</h1>
+
+            <img src="ending.jpg" class="start-img">
+
+            <p id="final-score"></p>
+            
+            <button onclick="location.reload()">Play Again</button>
+        </div>
         <script>
             let questions = [
             {
-                lyric: "Then you're left in the dust unless I stuck by ya, you're a ____",
+                lyric: "Then you're left in the dust unless I stuck by ya, you're a _____",
                 answer: "sunflower",
                 img: "img1.jpg"
             },
@@ -53,15 +65,15 @@
                 img: "img5.jpg"
             },
             {
-                lyric:"Secret _____ have held in my heart are harder to hide than I thought",
-                answer: "thoughts",
+                lyric:"Secret thoughts have held in my ______ are harder to hide than I thought",
+                answer: "heart",
                 img: "img6.jpg"
             },
             {
                 lyric:"Kaboom Kapow, rest in peace my granny, she got hit by a _____",
                 answer: "bazooka",
                 img: "img10.jpg"
-            }
+            },
             {
                 lyric:"I just wanna be part of your_____",
                 answer: "symphony",
@@ -88,8 +100,8 @@
             }
 
             function startGame(){
-                document.getElementById("start-screen").style.display = "none";
-                document.getElementById("quiz-screen").style.display = "block";
+                document.getElementById("start-screen").style.display = "none"; // hide speed start image   
+                document.getElementById("quiz-screen").style.display = "block"; // show quiz screen
                 loadQuestion();
             }
 
@@ -115,12 +127,14 @@
                     document.getElementById("answer").value = "";
                     document.getElementById("result").innerHTML = "";
                 } else {
-                    document.getElementById("lyric").innerHTML = "Final Score: " + score;
-                    document.getElementById("answer").value = "";
-                    document.getElementById("result").innerHTML = "";
-                    document.getElementById("hint").src = "ending.jpg";
-                    document.getElementById("thankyou").innerHTML = "Thank You for playing my game!";
-                    document.getElementById("thankyou").classList.remove("hidden");
+                   //hide quiz screen
+                   document.getElementById("quiz-screen").style.display = "none";
+                  
+                   //show end screen
+                   document.getElementById("end-screen").style.display = "block";
+                  
+                   //show final score
+                   document.getElementById("final-score").innerHTML = "Final Score: " + score;
                 }
             }
         </script>
